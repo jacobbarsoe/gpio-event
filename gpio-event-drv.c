@@ -1103,12 +1103,12 @@ static int __init gpio_event_init( void )
 
     // Register our proc entries.
 
-    gProcGpioEvent = create_proc_entry( "gpio-event", S_IFDIR | S_IRUGO | S_IXUGO, NULL );
+    gProcGpioEvent = (struct proc_dir_entry*) create_proc_entry( "gpio-event", S_IFDIR | S_IRUGO | S_IXUGO, NULL );
     if ( gProcGpioEvent == NULL )
     {
         return -ENOMEM;
     }
-    gProcPins = create_proc_entry( "pins", 0444, gProcGpioEvent );
+    gProcPins = (struct proc_dir_entry*) create_proc_entry( "pins", 0444, gProcGpioEvent );
     if ( gProcPins != NULL )
     {
         gProcPins->proc_fops = &pins_proc_ops;
